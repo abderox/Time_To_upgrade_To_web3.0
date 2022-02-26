@@ -22,16 +22,16 @@ const Navbar = () => {
         <li className="bg-[#4f36be]  py-2 px-7 mx-4 rounded-md cursor-pointer hover:bg-[#703ecc] flex md:mx-16 justify-center items-center text-xl">
           Login
         </li>
-        <span class="flex h-3 w-3 -ml-16 -mt-[45px]">
-            <span class="animate-ping relative inline-flex h-full w-full rounded-full bg-[#703ecc] opacity-75"></span>
-            <span class=" absolute inline-flex rounded-full h-3 w-3 bg-[#703ecc]"></span>
+        <span className="flex h-3 w-3 -ml-16 -mt-[45px]">
+            <span className="animate-ping relative inline-flex h-full w-full rounded-full bg-[#703ecc] opacity-75"></span>
+            <span className=" absolute inline-flex rounded-full h-3 w-3 bg-[#703ecc]"></span>
           </span>
       </ul>
       <li className="flex relative">
         {toggleMenu ? (
           <AiOutlineClose
             fontSize={28}
-            className="text-white md:hidden cursor-pointer"
+            className="text-white md:hidden cursor-pointer "
             onClick={() => setToggle(!toggleMenu)}
           />
         ) : (
@@ -42,10 +42,11 @@ const Navbar = () => {
           />
         )}
         {toggleMenu && (
-          <ul className=" z-10 fixed top-0 -right-2 p-3 w-[50vw] h-screen shadow-2xl md:hidden list:none flex flex-col justify-start items-center rounded-md blue-glassmorphism text-white animate-slide-in ">
-            <li className="w-full text-xl my-2">
+          <ul className=" z-40 fixed top-0 -right-2 p-3 w-[100vw] h-screen shadow-2xl md:hidden list:none flex flex-col justify-start items-center rounded-md blue-glassmorphism text-white animate-slide-in ">
+            <li className="w-full text-xl my-2 flex justify-center items-center">
               <AiOutlineClose
-                className="text-white md:hidden cursor-pointer"
+              fontSize={28}
+                className="text-gray-300 md:hidden cursor-pointer "
                 onClick={() => setToggle(!toggleMenu)}
               />
             </li>
