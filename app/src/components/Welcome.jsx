@@ -43,7 +43,8 @@ const Welcome = () => {
     formData,
     sendTransaction,
     handlechange,
-    isLoading
+    isLoading,
+    disconnectWallet
   } = useContext(TransactionContext);
   // const [isLoading, setIsLoading] = useState(false);
 
@@ -75,7 +76,7 @@ const Welcome = () => {
             </div>
           </div>
 
-          {!currentAccount && (
+          {!currentAccount ? (
             <button
               className=" flex  flex-row  justify-center items-center my-5 bg-[#4f36be] p-3  rounded-full cursor-pointer hover:bg-[#703ecc]  z-20 -mt-4"
               type="button"
@@ -83,7 +84,15 @@ const Welcome = () => {
             >
               <p className="text-white text-base font-md ">Connect Wallet</p>
             </button>
-          )}
+          ) : (
+            <button
+              className=" flex  flex-row  justify-center items-center my-5 bg-[#36be5f] p-3  rounded-full cursor-pointer hover:bg-[#3eccad]  z-20 -mt-4"
+              type="button"
+              
+            >
+              <p className="text-white text-base font-md ">Connected</p>
+            </button>
+          ) }
 
           <div className="flex flex-col  w-full mt-14 white-glassmorphism">
             <h1 className="text-3xl sm:text-5xl text-white text-gradient p-3">
@@ -148,7 +157,7 @@ const Welcome = () => {
                   <div className="  flex flex-col justify-center items-center text-white ">
                     <p className=" text-white  text-sm  font-thin">EXPIRES</p>
                     <p className="text-white   mt-[0.5]  font-semibold text-lg">
-                      When Ether is down
+                      When Ether tears down
                     </p>
                   </div>
                 </div>

@@ -42,7 +42,7 @@ export const TransactionProvider = ({ children }) => {
       const balance = await provider.getBalance(accounts[0]);
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
-        setmyBalance(Math.round(ethers.utils.formatEther(balance) * 100) / 100);
+        setmyBalance(Math.round(ethers.utils.formatEther(balance) * 10000) / 10000);
         console.log(ethers.utils.formatEther(balance));
       }
     } catch (error) {
@@ -109,6 +109,29 @@ export const TransactionProvider = ({ children }) => {
     }
   };
 
+  const disconnectWallet = async () => {
+    try {
+      const accounts = await ethereum.request({
+        method: "wallet_requestPermissions",
+        params: [
+          {
+            eth_accounts: {}
+          }
+        ]
+      });
+      await ethereum.request({
+        method: 'eth_requestAccounts'
+    })
+
+      setCurrentAccount("");
+      console.log("trying to disconnect");
+    } catch (error) {
+      console.log(error);
+
+      throw new Error("disconnecting problem occured");
+    }
+  };
+
   useEffect(() => {
     checkIfWalletIsConnect();
   }, []);
@@ -123,6 +146,7 @@ export const TransactionProvider = ({ children }) => {
         sendTransaction,
         handlechange,
         isLoading,
+        disconnectWallet
       }}
     >
       {children}
