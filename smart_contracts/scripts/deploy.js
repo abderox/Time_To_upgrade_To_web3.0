@@ -8,7 +8,7 @@ const main = async()=>{
 
   await transactions.deployed();
 
-  console.log("transactions deployed to:", transactions.address);
+  console.log("transactions deployed to: ", transactions.address);
 }
 
 

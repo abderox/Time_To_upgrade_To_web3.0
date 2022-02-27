@@ -164,7 +164,7 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism relativate mt-[240px]  ">
+          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism  mt-[240px]  ">
             <Input
               placeholder="Withrawing To ... "
               type="text"
