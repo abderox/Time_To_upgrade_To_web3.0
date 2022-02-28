@@ -44,7 +44,8 @@ const Welcome = () => {
     sendTransaction,
     handlechange,
     isLoading,
-    disconnectWallet
+    disconnectWallet,
+    displayhistory
   } = useContext(TransactionContext);
   // const [isLoading, setIsLoading] = useState(false);
 
@@ -64,7 +65,7 @@ const Welcome = () => {
           <p className="text-left mt-5  md:w-9/12 w-11/12 text-md font-semibold text-gray-400">
             Scalable , Modern , Rapid , Innovative
           </p>
-          <div id="space" className="flex  justify-center items-center -ml-5">
+          <div id="space" className="flex  justify-center items-center -ml-5 ">
             <div className="elogo ml-3 ">
               <div className="trif u1"></div>
               <div className="trif u2"></div>
@@ -90,11 +91,11 @@ const Welcome = () => {
               type="button"
               
             >
-              <p className="text-white text-base font-md ">Connected</p>
+              <p className="text-white text-base font-md " onClick={displayhistory}>Connected</p>
             </button>
           ) }
 
-          <div className="flex flex-col  w-full mt-14 white-glassmorphism">
+          <div className="flex flex-col  w-full mt-14 white-glassmorphism zindex">
             <h1 className="text-3xl sm:text-5xl text-white text-gradient p-3">
               Send Crypto gifts <br /> to your{" "}
               <span className="underline decoration-purple-500">lovers !</span>
@@ -137,7 +138,7 @@ const Welcome = () => {
 
                   {myBalance ? (
                     <p className="text-violet-900 font-bold text-2xl mt-1">
-                      {myBalance} ETH
+                      {myBalance} ETH 
                     </p>
                   ) : (
                     <p className="text-white font-semibold text-lg mt-1">

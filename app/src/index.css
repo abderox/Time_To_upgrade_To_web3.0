@@ -130,14 +130,19 @@ body {
 }
 
 #space {
+    z-index: 0;
     margin: auto;
     width: 200px;
     height: 125px;
     transform: perspective 400px;
     transform-origin: 110px 110px;
 }
+.zindex{
+    z-index: 4;
+}
 
 .elogo {
+    z-index: 0;
     margin: auto;
     position: reative;
     width: 100px;

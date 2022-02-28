@@ -3,7 +3,7 @@ import logo from "../../images/logo.png";
 const Footer = () => {
     return (
 
-<footer className="p-4 bg-white rounded-tl-tr-lg shadow md:px-6 md:py-8 dark:bg-gray-800">
+<footer className="p-4  rounded-tl-tr-lg shadow md:px-6 md:py-8 gradient-bg-footer">
 <div className="sm:flex sm:items-center sm:justify-between">
 <a href="https://flowbite.com" target="_blank" className="flex items-center mb-4 sm:mb-0">
 <img

@@ -30,6 +30,7 @@ export const TransactionProvider = ({ children }) => {
   const [transactionCount, settransactionCount] = useState(
     localStorage.getItem("transactionCount")
   );
+  const [transactions, setTransactions] = useState([]);
   const handlechange = (e, name) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
@@ -42,8 +43,11 @@ export const TransactionProvider = ({ children }) => {
       const balance = await provider.getBalance(accounts[0]);
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
-        setmyBalance(Math.round(ethers.utils.formatEther(balance) * 10000) / 10000);
+        setmyBalance(
+          Math.round(ethers.utils.formatEther(balance) * 10000) / 10000
+        );
         console.log(ethers.utils.formatEther(balance));
+        console.log(transactionCount);
       }
     } catch (error) {
       console.log(error);
@@ -90,6 +94,39 @@ export const TransactionProvider = ({ children }) => {
       throw new Error("No ethereum ");
     }
   };
+  const displayhistory = async () => {
+    try {
+      if (ethereum) {
+        console.log("heelo");
+
+        const transactionsContract = createEthereumContract();
+
+        const availableTransactions =
+          await transactionsContract.getAllTransactions();
+
+        const structuredTransactions = availableTransactions.map(
+          (transaction) => ({
+            addressTo: transaction.receiver,
+            addressFrom: transaction.sender,
+            timestamp: new Date(
+              transaction.timestamp.toNumber() * 1000
+            ).toLocaleString(),
+            message: transaction.message,
+            keyword: transaction.keyword,
+            amount: parseInt(transaction.amount._hex) / 10 ** 18,
+          })
+        );
+
+        console.log(structuredTransactions);
+
+        setTransactions(structuredTransactions);
+      } else {
+        console.log("Ethereum is not present");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const connectWallet = async () => {
     try {
@@ -115,13 +152,13 @@ export const TransactionProvider = ({ children }) => {
         method: "wallet_requestPermissions",
         params: [
           {
-            eth_accounts: {}
-          }
-        ]
+            eth_accounts: {},
+          },
+        ],
       });
       await ethereum.request({
-        method: 'eth_requestAccounts'
-    })
+        method: "eth_requestAccounts",
+      });
 
       setCurrentAccount("");
       console.log("trying to disconnect");
@@ -134,7 +171,8 @@ export const TransactionProvider = ({ children }) => {
 
   useEffect(() => {
     checkIfWalletIsConnect();
-  }, []);
+    displayhistory();
+  }, [transactionCount]);
 
   return (
     <TransactionContext.Provider
@@ -146,7 +184,9 @@ export const TransactionProvider = ({ children }) => {
         sendTransaction,
         handlechange,
         isLoading,
-        disconnectWallet
+        disconnectWallet,
+        displayhistory,
+        transactions,
       }}
     >
       {children}
