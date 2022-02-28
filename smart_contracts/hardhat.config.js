@@ -1,5 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
-//https://eth-ropsten.alchemyapi.io/v2/zabF_NnkBWqBJxUdoGloIdmXKa8XNNgG
+
 
 
 // https://hardhat.org/guides/create-task.html
@@ -21,8 +21,8 @@ module.exports = {
   solidity: "0.8.0",
   networks:{
     ropsten:{
-      url:'https://eth-ropsten.alchemyapi.io/v2/zabF_NnkBWqBJxUdoGloIdmXKa8XNNgG',
-      accounts:['4bf2f825b504f0e7890e6074ea3aa00548dde41d4f2d4536ffd19bf6f3bf1489']
+      url:'',
+      accounts:[]
     }
   }
 };
